@@ -2,6 +2,7 @@ import { Body, Controller, Get, HttpStatus, Post, Query, Req, Res } from '@nestj
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { HelloBody } from 'src/entities/hello-body.entity';
+import { ProjectAddEdit } from 'src/entities/project-addedit.entity';
 import { ProjectManagementService } from './project-management.service';
 
 @ApiTags('Project Management')
@@ -35,16 +36,20 @@ export class ProjectManagementController {
     }
 
 
-    @ApiOperation({ summary: 'Hello First1' })
-    @Post('hello2')
-    async hello2(@Body() query: HelloBody , @Req() request: FastifyRequest,@Res() reply: FastifyReply) {
+    @ApiOperation({ summary: 'product-add-edit' })
+    @Post('addedit')
+    async productAddEdit(@Body() query: ProjectAddEdit , @Req() request: FastifyRequest,@Res() reply: FastifyReply) {
         try {
+
+            const response = await this.projectManagementService.projectAddEdit(query)
+
 
             reply
                 .status(HttpStatus.OK)
                 .header('Content-Type', 'application/json')
                 .send({
-                    'status': "success"
+                    'status': "success",
+                    "response": response
                 })
             
         } catch (error) {
