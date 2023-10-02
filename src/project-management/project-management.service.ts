@@ -21,6 +21,15 @@ export class ProjectManagementService {
     }
 
 
+    async projectStatusChange(data:any): Promise<any>{
+        try {
+            return Promise.resolve(data)
+        } catch (error) {
+            return Promise.reject(data)
+        }
+    }
+
+
 
 }
 
