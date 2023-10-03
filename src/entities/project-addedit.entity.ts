@@ -105,4 +105,11 @@ export class ProjectAddEdit {
     required: true,
   })
   project_poster_vertical: String;
+
+  @ApiProperty({
+    example: true,
+    description: '',
+    required: true,
+  })
+  status: Boolean;
 }

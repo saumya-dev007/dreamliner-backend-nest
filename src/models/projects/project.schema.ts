@@ -51,6 +51,9 @@ export class Project_List {
 
   @Prop({ required: true })
   project_poster_vertical: String;
+
+  @Prop({ required: true })
+  status: Boolean;
 }
 
 export const Project_list = SchemaFactory.createForClass(Project_List);
