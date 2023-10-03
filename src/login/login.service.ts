@@ -9,11 +9,13 @@ export class LoginService {
   constructor(@InjectModel('users') private userModel: Model<IUser>) {}
   async findByEmail(email: string, password: string): Promise<any> {
     try {
-      console.log(' findByEmail hit-----:>> ',email,password);
-      let user: any = await this.userModel.findOne({email },{"login_data":0}).lean();
-      console.log(user,' findByEmail hit-----:>> ' ,user['password']);
-      if(!user) return Promise.reject("User Not Found");
-      if(user.password !== password) return Promise.reject("Invalid Password");
+      console.log(' findByEmail hit-----:>> ', email, password);
+      let user: any = await this.userModel
+        .findOne({ email }, { login_data: 0 })
+        .lean();
+      console.log(user, ' findByEmail hit-----:>> ', user['password']);
+      if (!user) return Promise.reject('User Not Found');
+      if (user.password !== password) return Promise.reject('Invalid Password');
       return Promise.resolve(user);
     } catch (error) {
       return Promise.reject(error);
@@ -32,10 +34,19 @@ export class LoginService {
       //   if (!valid) throw 'Invalid Password';
       // const accessToken = await createAccessToken(user[0]._id.toString());
       // const refreshToken = await createRefreshToken(user[0]._id.toString());
-      const user:any = await this.userModel.findByIdAndUpdate({ _id: data._id }, {  $push: { login_data: { ...data.ipInfo,login_time: moment().valueOf() } } }).lean();
-      user.loginCount = user.login_data.length;
+      const user: any = await this.userModel
+        .findByIdAndUpdate(
+          { _id: data._id },
+          {
+            $inc: { login_count: 1 },
+            $push: {
+              login_data: { ...data.ipInfo, login_time: moment().valueOf() },
+            },
+          },
+        )
+        .lean();
       delete user['password'];
-      delete user["refresh_token"];
+      delete user['refresh_token'];
       delete user['login_data'];
       console.log('user', user);
       return Promise.resolve(user);
@@ -43,6 +54,4 @@ export class LoginService {
       return Promise.reject(error);
     }
   }
-
-  
 }
