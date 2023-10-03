@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, Schema, Types } from 'mongoose';
 import { IProduct } from 'src/models/projects/project.interface';
 
 @Injectable()
@@ -21,14 +21,16 @@ export class ProjectManagementService {
       console.log('projectAddEdit hit=====>> ', data);
 
       if (data._id !== undefined && data._id !== null) {
-        console.log('id goes here=====>> ', data._id);
+        console.log('projectEdit hit=====>>');
 
         let updateResponse: any = await this.projectModel.findByIdAndUpdate(
-          { _id: data._id },
+          { _id: new mongoose.Types.ObjectId(data._id) },
           data,
         );
         return Promise.resolve(updateResponse);
       } else {
+        console.log('project Add hit=====>>');
+
         let response: any = await this.projectModel.create(data);
         return Promise.resolve(response);
       }
