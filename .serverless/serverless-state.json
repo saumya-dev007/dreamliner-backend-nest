@@ -183,7 +183,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/dreamliner-backend-nest/dev/1696306233569-2023-10-03T04:10:33.569Z/dreamliner-backend-nest.zip"
+                "S3Key": "serverless/dreamliner-backend-nest/dev/1696311786386-2023-10-03T05:43:06.386Z/dreamliner-backend-nest.zip"
               },
               "Handler": "dist/serverless.handler",
               "Runtime": "nodejs16.x",
@@ -333,7 +333,7 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1696306218503": {
+          "ApiGatewayDeployment1696311771252": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -564,7 +564,7 @@
     "artifact": "/Users/rex/Documents/saumya/dreamliner/dreamliner-backend-nest/.serverless/dreamliner-backend-nest.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/dreamliner-backend-nest/dev/1696306233569-2023-10-03T04:10:33.569Z",
+    "artifactDirectoryName": "serverless/dreamliner-backend-nest/dev/1696311786386-2023-10-03T05:43:06.386Z",
     "artifact": "dreamliner-backend-nest.zip"
   }
 }

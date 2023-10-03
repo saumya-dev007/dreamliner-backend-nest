@@ -22,14 +22,14 @@ import { NestFactory } from '@nestjs/core';
  async function bootstrapServer(): Promise<any> { 
   
    const serverOptions: FastifyServerOptions = { 
-     logger: (process.env.LOGGER || '0') == '1', 
+     logger: (process.env?.LOGGER || '0') == '1', 
    }; 
    const instance: FastifyInstance = fastify(serverOptions); 
    const app = await NestFactory.create<NestFastifyApplication>( 
      AppModule, 
      new FastifyAdapter(instance), 
      { 
-       logger: !process.env.AWS_EXECUTION_ENV ? new Logger() : console, 
+       logger: !process.env?.AWS_EXECUTION_ENV ? new Logger() : console, 
      }, 
    ); 
   

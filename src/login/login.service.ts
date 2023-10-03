@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as moment from 'moment';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { IUser } from 'src/models/users/users.interface';
 
 @Injectable()
@@ -22,7 +22,6 @@ export class LoginService {
 
   async login(data: any): Promise<any> {
     try {
-
       //   let user = await users.find({ email });
       //   console.log('user :>> ', user);
       //   if (user.length === 0) throw 'User Not Found';
@@ -33,7 +32,12 @@ export class LoginService {
       //   if (!valid) throw 'Invalid Password';
       // const accessToken = await createAccessToken(user[0]._id.toString());
       // const refreshToken = await createRefreshToken(user[0]._id.toString());
-      const user:any = await this.userModel.findByIdAndUpdate({ _id: data._id }, {  $push: { login_data: { login_time: moment().valueOf() } } });
+      const user:any = await this.userModel.findByIdAndUpdate({ _id: data._id }, {  $push: { login_data: { ...data.ipInfo,login_time: moment().valueOf() } } }).lean();
+      user.loginCount = user.login_data.length;
+      delete user['password'];
+      delete user["refresh_token"];
+      delete user['login_data'];
+      console.log('user', user);
       return Promise.resolve(user);
     } catch (error) {
       return Promise.reject(error);
