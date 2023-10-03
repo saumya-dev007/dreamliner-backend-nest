@@ -48,6 +48,7 @@ export class ProjectManagementController {
     }
   }
 
+  // ========= Project AddEdit ======== //
   @ApiOperation({ summary: 'project-add-edit' })
   @Post('addedit')
   async productAddEdit(
@@ -78,7 +79,9 @@ export class ProjectManagementController {
         });
     }
   }
+  // ================================== //
 
+  // =========== Project Status Change ======== //
   @ApiOperation({ summary: 'project-status-chnage' })
   @Post('status-change')
   async statusChange(
@@ -107,4 +110,6 @@ export class ProjectManagementController {
         });
     }
   }
+
+  //========================================== //
 }

@@ -43,9 +43,19 @@ export class ProjectManagementService {
   // =========== Project Status Change ======== //
   async projectStatusChange(data: any): Promise<any> {
     try {
-      return Promise.resolve(data);
+      //   console.log('Project Status Chnaged', data.project_id);
+      if (data.project_id !== undefined && data.project_id !== null) {
+        let updateStatusResponse: any =
+          await this.projectModel.findByIdAndUpdate(
+            { _id: new mongoose.Types.ObjectId(data.project_id) },
+            { status: data.status },
+          );
+        return Promise.resolve(updateStatusResponse);
+      } else {
+        return Promise.reject('Please provide proper request');
+      }
     } catch (error) {
-      return Promise.reject(data);
+      return Promise.reject(error);
     }
   }
   // ========================================== //
