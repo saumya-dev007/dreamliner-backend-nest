@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FastifyReply, FastifyRequest } from 'fastify';
+import { async } from 'rxjs';
 import { HelloBody } from 'src/entities/hello-body.entity';
 import { ProjectAddEdit } from 'src/entities/project-addedit.entity';
 import { ProjectStatusChnage } from 'src/entities/project-status-chnage.entity';
@@ -80,6 +81,34 @@ export class ProjectManagementController {
     }
   }
   // ================================== //
+
+  // ============= Project Listing ============== //
+  @ApiOperation({ summary: 'project-listing' })
+  @Post('project-listing')
+  async projectListing(
+    // @Body() query: ProjectStatusChnage,
+    @Req() request: FastifyRequest,
+    @Res() reply: FastifyReply,
+  ) {
+    try {
+      const response = await this.projectManagementService.projectListing({});
+      reply
+        .status(HttpStatus.OK)
+        .header('Content-Type', 'application/json')
+        .send({
+          status: 'success',
+          response: response,
+        });
+    } catch (error) {
+      reply
+        .status(HttpStatus.BAD_REQUEST)
+        .header('Content-Type', 'application/json')
+        .send({
+          status: 'error',
+        });
+    }
+  }
+  // =================================================== //
 
   // =========== Project Status Change ======== //
   @ApiOperation({ summary: 'project-status-chnage' })

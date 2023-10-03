@@ -47,10 +47,10 @@ export class Project_List {
   press_release: Array<String>;
 
   @Prop({ required: true })
-  project_poster_hr: String;
+  poster_horizontal: String;
 
   @Prop({ required: true })
-  project_poster_vertical: String;
+  poster_verticle: String;
 
   @Prop({ required: true })
   status: Boolean;
