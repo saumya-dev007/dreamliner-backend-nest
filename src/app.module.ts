@@ -6,6 +6,7 @@ import { configuration } from 'config/configuration';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule, Schema } from '@nestjs/mongoose';
 import { UserSchema } from './models/users/users.schema';
+import { ArtistModule } from './artist/artist.module';
 @Module({
   imports: [
     ProjectManagementModule,
@@ -24,6 +25,8 @@ import { UserSchema } from './models/users/users.schema';
         dbName: configService.get<string>('mongo_db_name'),
       }),
     }),
+
+    ArtistModule,
 
   ],
   controllers: [],
