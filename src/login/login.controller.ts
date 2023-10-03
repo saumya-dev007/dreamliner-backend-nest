@@ -12,16 +12,16 @@ export class LoginController {
 
     @ApiOperation({summary:'Login'})
     @Post('')
-    async login(@Body() {email, password }:LoginBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply ){
+    async login(@Body() {email, password, ipInfo }:LoginBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply ){
         try {
             const userFound = await this.loginService.findByEmail(email, password);
-            const response = await this.loginService.login(userFound);
+            const response = await this.loginService.login({...userFound,ipInfo:ipInfo});
             reply
             .status(HttpStatus.OK)
             .header('content-type', 'application/json')
             .send({
                 'status': 'success',
-                'response': response
+                'response': {'userData':response}
             })
         } catch (error) {
             console.log('error', error)
