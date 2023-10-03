@@ -73,7 +73,7 @@ import { NestFactory } from '@nestjs/core';
    // app.enableCors() 
    await app.register(cors, CORS_OPTIONS) 
   
-   app.setGlobalPrefix("api"); 
+  //  app.setGlobalPrefix("api"); 
   //  app.setGlobalPrefix(process.env.API_PREFIX); 
   
    await app.init(); 

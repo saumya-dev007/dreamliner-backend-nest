@@ -1,6 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class LoginBody {
+
+  @ApiProperty({
+    example: '6516cb8c0d2ed5a21f8387e5',
+    description: 'ID Parameter for Logout',
+  })
+  _id: any;
+
   @ApiProperty({
     example: 'ite@yopmail.com',
     description: 'Email Parameter',

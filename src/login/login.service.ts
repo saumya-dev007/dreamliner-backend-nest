@@ -7,6 +7,9 @@ import { IUser } from 'src/models/users/users.interface';
 @Injectable()
 export class LoginService {
   constructor(@InjectModel('users') private userModel: Model<IUser>) {}
+
+
+  
   async findByEmail(email: string, password: string): Promise<any> {
     try {
       console.log(' findByEmail hit-----:>> ', email, password);
@@ -50,6 +53,23 @@ export class LoginService {
       delete user['login_data'];
       console.log('user', user);
       return Promise.resolve(user);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
+  async logout(_id: any): Promise<any> {
+    try {
+      // console.log('_id', _id);
+      const user: any = await this.userModel
+        .findByIdAndUpdate(
+          { _id: new mongoose.Types.ObjectId(_id) },
+          {
+            $unset: { refresh_token: '' }
+          },
+        )
+        .lean();
+      return Promise.resolve("Logout Successfully");
     } catch (error) {
       return Promise.reject(error);
     }

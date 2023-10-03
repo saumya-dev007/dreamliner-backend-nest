@@ -6,12 +6,12 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 
 
 @ApiTags('Login')
-@Controller('login')
+@Controller('')
 export class LoginController {
     constructor(private loginService: LoginService){}
 
     @ApiOperation({summary:'Login'})
-    @Post('')
+    @Post('login')
     async login(@Body() {email, password, ipInfo }:LoginBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply ){
         try {
             const userFound = await this.loginService.findByEmail(email, password);
@@ -30,7 +30,31 @@ export class LoginController {
             .header('Content-Type', 'application/json')
             .send({
                 "status": "error",
-                // "message": error.message
+                "response":{"message": error}
+            })
+        }
+    }
+
+    @ApiOperation({summary:'Login'})
+    @Post('logout')
+    async logout(@Body() {_id }:LoginBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply ){
+        try {
+            const response = await this.loginService.logout(_id);
+            reply
+            .status(HttpStatus.OK)
+            .header('content-type', 'application/json')
+            .send({
+                'status': 'success',
+                'response': {'message':response}
+            })
+        } catch (error) {
+            console.log('error', error)
+            reply
+            .status(HttpStatus.BAD_REQUEST)
+            .header('Content-Type', 'application/json')
+            .send({
+                "status": "error",
+                "response":{"message": error}
             })
         }
     }
