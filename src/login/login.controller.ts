@@ -12,9 +12,10 @@ export class LoginController {
 
     @ApiOperation({summary:'Login'})
     @Post('')
-    async login(@Body() body:LoginBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply ){
+    async login(@Body() {email, password }:LoginBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply ){
         try {
-            const response = await this.loginService.login(body)
+            const userFound = await this.loginService.findByEmail(email, password);
+            const response = await this.loginService.login(userFound);
             reply
             .status(HttpStatus.OK)
             .header('content-type', 'application/json')
@@ -23,12 +24,13 @@ export class LoginController {
                 'response': response
             })
         } catch (error) {
+            console.log('error', error)
             reply
-            .status(HttpStatus.OK)
+            .status(HttpStatus.BAD_REQUEST)
             .header('Content-Type', 'application/json')
             .send({
                 "status": "error",
-                "message": error.message
+                // "message": error.message
             })
         }
     }

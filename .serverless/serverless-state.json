@@ -13,9 +13,15 @@
       "environment": {
         "STAGE": "dev",
         "MY_API_KEY": "secret_api_key",
+<<<<<<< HEAD
         "DEV_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/dreamliner?retryWrites=true&w=majority",
         "DEV_MONGO_DB_NAME": "dreamliner",
         "PROD_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/dreamliner?retryWrites=true&w=majority",
+=======
+        "DEV_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/",
+        "DEV_MONGO_DB_NAME": "dreamliner",
+        "PROD_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/",
+>>>>>>> 49534560fa877102e71893c2647e4cbbb648d0c1
         "PROD_MONGO_DB_NAME": "dreamliner_prod"
       },
       "stage": "dev",
@@ -183,7 +189,11 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
+<<<<<<< HEAD
                 "S3Key": "serverless/dreamliner-backend-nest/dev/1696310234168-2023-10-03T05:17:14.168Z/dreamliner-backend-nest.zip"
+=======
+                "S3Key": "serverless/dreamliner-backend-nest/dev/1696306233569-2023-10-03T04:10:33.569Z/dreamliner-backend-nest.zip"
+>>>>>>> 49534560fa877102e71893c2647e4cbbb648d0c1
               },
               "Handler": "dist/serverless.handler",
               "Runtime": "nodejs16.x",
@@ -194,9 +204,15 @@
                 "Variables": {
                   "STAGE": "dev",
                   "MY_API_KEY": "secret_api_key",
+<<<<<<< HEAD
                   "DEV_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/dreamliner?retryWrites=true&w=majority",
                   "DEV_MONGO_DB_NAME": "dreamliner",
                   "PROD_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/dreamliner?retryWrites=true&w=majority",
+=======
+                  "DEV_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/",
+                  "DEV_MONGO_DB_NAME": "dreamliner",
+                  "PROD_DB_CONNECTION_STRING": "mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/",
+>>>>>>> 49534560fa877102e71893c2647e4cbbb648d0c1
                   "PROD_MONGO_DB_NAME": "dreamliner_prod"
                 }
               },
@@ -333,7 +349,11 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
+<<<<<<< HEAD
           "ApiGatewayDeployment1696310220166": {
+=======
+          "ApiGatewayDeployment1696306218503": {
+>>>>>>> 49534560fa877102e71893c2647e4cbbb648d0c1
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -561,10 +581,17 @@
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
+<<<<<<< HEAD
     "artifact": "/Users/ivedas/Documents/InfoTechEdge/Development/dreamliner-backend-nest/.serverless/dreamliner-backend-nest.zip"
   },
   "package": {
     "artifactDirectoryName": "serverless/dreamliner-backend-nest/dev/1696310234168-2023-10-03T05:17:14.168Z",
+=======
+    "artifact": "/Users/rex/Documents/saumya/dreamliner/dreamliner-backend-nest/.serverless/dreamliner-backend-nest.zip"
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/dreamliner-backend-nest/dev/1696306233569-2023-10-03T04:10:33.569Z",
+>>>>>>> 49534560fa877102e71893c2647e4cbbb648d0c1
     "artifact": "dreamliner-backend-nest.zip"
   }
 }

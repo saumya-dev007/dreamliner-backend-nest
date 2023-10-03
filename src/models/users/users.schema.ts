@@ -8,8 +8,8 @@ export class User {
 //   value: string;
 //   @Prop({ index: -1 })
 //   translation_label: string;
-//   @Prop({ type: 'array' })
-//   polygon_points: Array<object>;
+  @Prop({ type: 'array' })
+  login_data: Array<object>;
   @Prop({ default: () => moment().valueOf() })
   createdon_datetime: number;
 }

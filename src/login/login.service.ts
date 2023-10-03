@@ -1,17 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import * as moment from 'moment';
 import { Model } from 'mongoose';
 import { IUser } from 'src/models/users/users.interface';
 
 @Injectable()
 export class LoginService {
   constructor(@InjectModel('users') private userModel: Model<IUser>) {}
+  async findByEmail(email: string, password: string): Promise<any> {
+    try {
+      console.log(' findByEmail hit-----:>> ',email,password);
+      let user: any = await this.userModel.findOne({email },{"login_data":0}).lean();
+      console.log(user,' findByEmail hit-----:>> ' ,user['password']);
+      if(!user) return Promise.reject("User Not Found");
+      if(user.password !== password) return Promise.reject("Invalid Password");
+      return Promise.resolve(user);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+
   async login(data: any): Promise<any> {
     try {
-      console.log('login hittttttt===== :>> ');
-      const { email, password, ipInfo } = data;
-      console.log('req----------------->', email, password, ipInfo);
-      let user: any = await this.userModel.find({ });
 
       //   let user = await users.find({ email });
       //   console.log('user :>> ', user);
@@ -23,10 +33,12 @@ export class LoginService {
       //   if (!valid) throw 'Invalid Password';
       // const accessToken = await createAccessToken(user[0]._id.toString());
       // const refreshToken = await createRefreshToken(user[0]._id.toString());
-      // await users.findByIdAndUpdate({ _id: user[0]._id }, { $set: { refresh_token: refreshToken }, $push: { login_data: { ...ipInfo, login_time: Math.round((new Date())) } } });
+      const user:any = await this.userModel.findByIdAndUpdate({ _id: data._id }, {  $push: { login_data: { login_time: moment().valueOf() } } });
       return Promise.resolve(user);
     } catch (error) {
       return Promise.reject(error);
     }
   }
+
+  
 }
