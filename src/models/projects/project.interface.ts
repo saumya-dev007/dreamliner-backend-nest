@@ -29,9 +29,9 @@ export interface IProduct extends Document {
 
   readonly press_release: Array<String>;
 
-  readonly project_poster_hr: String;
+  readonly poster_horizontal: String;
 
-  readonly project_poster_vertical: String;
+  readonly poster_verticle: String;
 
   readonly status: String;
 }
