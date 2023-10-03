@@ -21,6 +21,7 @@ provider:
     DEV_MONGO_DB_NAME: dreamliner
     PROD_DB_CONNECTION_STRING: mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/
     PROD_MONGO_DB_NAME: dreamliner_prod
+    CLOUDFRONT_URL: https://dluh9degdjgwv.cloudfront.net/
 
 functions:
   main:
@@ -35,4 +36,4 @@ functions:
 
 plugins:
   - serverless-offline
-  - serverless-apigw-binary
+  # - serverless-apigw-binary

@@ -27,4 +27,15 @@ export class ArtistService {
             
         }
     }
+
+
+    async autocompleteArtist(_id:string, field:any): Promise<any>{
+        try {
+            const artist = await this.artistModel.findByIdAndUpdate({_id:new mongoose.Types.ObjectId(_id)},{$set:{...field}});
+            return Promise.resolve(artist);
+        } catch (error) {
+            return Promise.reject(error);
+            
+        }
+    }
 }
