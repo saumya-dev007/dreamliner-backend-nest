@@ -27,7 +27,7 @@ export class ArtistService {
   // ======== artist Listing Count ========== //
   async artistListingCount(data: any): Promise<any> {
     try {
-      let countResponse: any = await this.artistModel.count();
+      let countResponse: any = await this.artistModel.find(data.searchcondition).count();
 
       return Promise.resolve(countResponse);
     } catch (error) {

@@ -33,6 +33,30 @@ export class ArtistController {
         }
     };
 
+
+    @ApiOperation({summary:'Add Artist'})
+    @Post("/count")
+    async artistcount(@Body() body:ArtistBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
+        try {
+            const data = await this.artistService.artistListingCount(body);
+            reply.status(HttpStatus.OK)
+            .header('content-type', 'application/json')
+            .send({
+                "status": "success",
+                "response":{"artistData": data}
+            })
+        } catch (error) {
+            console.log('error', error);
+            reply
+            .status(HttpStatus.BAD_REQUEST)
+            .header('Content_Type','application/json')
+            .send({
+                'status':'error',
+                "response":{"message": error}
+            })
+        }
+    };
+
     @ApiOperation({summary:'Add Artist'})
     @Post("/add")
     async addArtist(@Body() body:ArtistBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
