@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule, Schema } from '@nestjs/mongoose';
 import { UserSchema } from './models/users/users.schema';
 import { ArtistModule } from './artist/artist.module';
+import { TeamManagementModule } from './team-management/team-management.module';
 @Module({
   imports: [
     ProjectManagementModule,
@@ -27,6 +28,8 @@ import { ArtistModule } from './artist/artist.module';
     }),
 
     ArtistModule,
+
+    TeamManagementModule,
 
   ],
   controllers: [],
