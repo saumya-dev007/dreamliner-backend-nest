@@ -7,6 +7,33 @@ import { ITeam } from 'src/models/team/team.interface';
 export class TeamManagementService {
   constructor(@InjectModel('team_lists') private teamModel: Model<ITeam>) {}
 
+  // =========== member Listing ======== //
+  async teamListing(data: any): Promise<any> {
+    try {
+      let teamData: any = await this.teamModel
+        .find(data.searchcondition)
+        .skip(data.skip)
+        .limit(data.limit)
+        .sort(data.sort);
+      return Promise.resolve(teamData);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+  // ========================================== //
+
+  // ======== member Listing Count ========== //
+  async teamListingCount(data: any): Promise<any> {
+    try {
+      let countResponse: any = await this.teamModel.find(data.searchcondition).count();
+
+      return Promise.resolve(countResponse);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+  // ======================================= //
+
   async addTeam(data: any): Promise<any> {
     try {
       const team = this.teamModel.create(data);
@@ -28,10 +55,12 @@ export class TeamManagementService {
     }
   }
 
-  async fetchTeamLisitng(data: any): Promise<any> {
+  async findMember(_id: string): Promise<any> {
     try {
-      const teamListingData = this.teamModel.find({});
-      return Promise.resolve(teamListingData);
+      const member = await this.teamModel.findOne({
+        _id: new mongoose.Types.ObjectId(_id),
+      });
+      return Promise.resolve(member);
     } catch (error) {
       return Promise.reject(error);
     }
