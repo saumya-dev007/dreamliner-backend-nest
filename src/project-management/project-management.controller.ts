@@ -176,7 +176,7 @@ export class ProjectManagementController {
 
   //   ============ Project Listing Count ========= //
   @ApiOperation({ summary: 'Project-Listing-Count' })
-  @Get('project-listing-count')
+  @Post('project-listing-count')
   async ProjectListingCount(
     @Req() request: FastifyRequest,
     @Res() reply: FastifyReply,
