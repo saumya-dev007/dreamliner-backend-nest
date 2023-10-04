@@ -82,7 +82,7 @@ export class ArtistController {
 
     @ApiOperation({summary:'Artist Find'})
     @Get("/find")
-    async findArtist(@Body() {_id}:ArtistBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
+    async findArtist(@Query() {_id}:ArtistBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
         try {
             const data = await this.artistService.findArtist(_id);
             reply.status(HttpStatus.OK)
