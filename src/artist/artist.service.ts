@@ -9,6 +9,33 @@ export class ArtistService {
     @InjectModel('artist_lists') private artistModel: Model<IAurtist>,
   ) {}
 
+  // =========== artist Listing ======== //
+  async artistListing(data: any): Promise<any> {
+    try {
+      let artistData: any = await this.artistModel
+        .find(data.searchcondition)
+        .skip(data.skip)
+        .limit(data.limit)
+        .sort(data.sort);
+      return Promise.resolve(artistData);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+  // ========================================== //
+
+  // ======== artist Listing Count ========== //
+  async artistListingCount(data: any): Promise<any> {
+    try {
+      let countResponse: any = await this.artistModel.count();
+
+      return Promise.resolve(countResponse);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+  // ======================================= //
+
   async addArtist(data: any): Promise<any> {
     try {
       const artist = await this.artistModel.create(data);
