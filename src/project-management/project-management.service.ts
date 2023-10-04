@@ -63,11 +63,25 @@ export class ProjectManagementService {
   // =========== Project Listing ======== //
   async projectListing(data: any): Promise<any> {
     try {
-      let updateStatusResponse: any = await this.projectModel.find({});
+      let updateStatusResponse: any = await this.projectModel
+        .find({})
+        .limit(20);
       return Promise.resolve(updateStatusResponse);
     } catch (error) {
       return Promise.reject(error);
     }
   }
   // ========================================== //
+
+  async projectSingleFetch(data: any): Promise<any> {
+    try {
+      let updateStatusResponse: any = await this.projectModel.find({
+        _id: data._id,
+      });
+
+      return Promise.resolve(updateStatusResponse);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }
