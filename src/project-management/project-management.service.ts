@@ -73,15 +73,29 @@ export class ProjectManagementService {
   }
   // ========================================== //
 
+  // =========== Project Single Feetch Details ======= //
   async projectSingleFetch(data: any): Promise<any> {
     try {
-      let updateStatusResponse: any = await this.projectModel.find({
+      let Response: any = await this.projectModel.find({
         _id: data._id,
       });
 
-      return Promise.resolve(updateStatusResponse);
+      return Promise.resolve(Response);
     } catch (error) {
       return Promise.reject(error);
     }
   }
+  // ============================================ //
+
+  // ======== Project Listing Count ========== //
+  async projectListingCount(data: any): Promise<any> {
+    try {
+      let countResponse: any = await this.projectModel.count();
+
+      return Promise.resolve(countResponse);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
+  // ======================================= //
 }

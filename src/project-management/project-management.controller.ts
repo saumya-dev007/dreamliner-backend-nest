@@ -144,7 +144,6 @@ export class ProjectManagementController {
   //========================================== //
 
   //   ============ Project Single fetch details ========= //
-
   @ApiOperation({ summary: 'Project-single-fetch' })
   @Post('project-single-fetch')
   async ProjectSingleFetch(
@@ -173,4 +172,35 @@ export class ProjectManagementController {
         });
     }
   }
+  // ======================================================= //
+
+  //   ============ Project Listing Count ========= //
+  @ApiOperation({ summary: 'Project-Listing-Count' })
+  @Post('project-listing-count')
+  async ProjectListingCount(
+    @Req() request: FastifyRequest,
+    @Res() reply: FastifyReply,
+  ) {
+    try {
+      const response = await this.projectManagementService.projectListingCount(
+        {},
+      );
+
+      reply
+        .status(HttpStatus.OK)
+        .header('Content-Type', 'application/json')
+        .send({
+          status: 'success',
+          response: response,
+        });
+    } catch (error) {
+      reply
+        .status(HttpStatus.BAD_REQUEST)
+        .header('Content-Type', 'application/json')
+        .send({
+          status: 'error',
+        });
+    }
+  }
+  // ======================================================= //
 }
