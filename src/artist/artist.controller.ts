@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, Post, Query, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { ArtistBody } from 'src/entities/artist-body.entity';
@@ -38,6 +38,30 @@ export class ArtistController {
     async findArtist(@Body() {_id}:ArtistBody, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
         try {
             const data = await this.artistService.findArtist(_id);
+            reply.status(HttpStatus.OK)
+            .header('content-type', 'application/json')
+            .send({
+                "status": "success",
+                "response":{"artistData": data}
+            })
+        } catch (error) {
+            console.log('error', error);
+            reply
+            .status(HttpStatus.BAD_REQUEST)
+            .header('Content_Type','application/json')
+            .send({
+                'status':'error',
+                "response":{"message": error}
+            })
+        }
+    };
+
+    @ApiOperation({summary:'Artist Autocomplete'})
+    @Get("/auto-complete")
+    async autocompleteArtist(@Query('name') name: string, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
+        try {
+            console.log('name', name)
+            const data = await this.artistService.autocompleteArtist(name);
             reply.status(HttpStatus.OK)
             .header('content-type', 'application/json')
             .send({
