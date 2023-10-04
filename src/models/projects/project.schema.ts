@@ -52,7 +52,7 @@ export class Project_List {
   @Prop({ required: true })
   poster_verticle: String;
 
-  @Prop({ required: true })
+  @Prop({ default: true })
   status: Boolean;
 }
 
