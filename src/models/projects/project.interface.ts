@@ -23,6 +23,10 @@ export interface IProduct extends Document {
 
   readonly actors: Array<String>;
 
+  readonly category: String;
+
+  readonly sub_category: String;
+
   readonly description: String;
 
   readonly associate_partners: Array<String>;

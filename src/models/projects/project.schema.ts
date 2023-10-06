@@ -52,6 +52,12 @@ export class Project_List {
   @Prop({ required: true })
   poster_verticle: String;
 
+  @Prop({ required: true })
+  category: String;
+
+  @Prop({ required: true })
+  sub_category: String;
+
   @Prop({ default: true })
   status: Boolean;
 }
