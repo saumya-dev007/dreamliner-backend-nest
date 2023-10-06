@@ -1,6 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ProjectAddEdit {
+
+  @ApiProperty({
+    example: 'id',
+    description: 'ID parameter for Edit',
+    // required: true,
+  })
+  _id: any;
+
   @ApiProperty({
     example: 'test',
     description: 'First Body parameter',

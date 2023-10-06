@@ -35,7 +35,7 @@ export class Project_List {
   release_date: Number;
 
   @Prop({ required: true })
-  actors: Array<String>;
+  actors: Array<Object>;
 
   @Prop({ required: true })
   description: String;
