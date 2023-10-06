@@ -8,6 +8,8 @@ export class Team{
     designation:string;
     @Prop()
     image:string;
+    @Prop({ default: true })
+  status: Boolean;
 }
 
 export const TeamSchema = SchemaFactory.createForClass(Team);

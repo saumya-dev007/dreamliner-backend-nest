@@ -115,6 +115,34 @@ export class TeamManagementController {
         });
     }
   }
+  @ApiOperation({ summary: 'Deletw Team' })
+  @Post('/delete')
+  async deleteTeam(
+    @Body() { _id}: TeamBody,
+    @Req() request: FastifyRequest,
+    @Res() reply: FastifyReply,
+  ) {
+    try {
+      const data = await this.teamService.deleteMember(_id);
+      reply
+        .status(HttpStatus.OK)
+        .header('content-type', 'application/json')
+        .send({
+          status: 'success',
+          response: { teamData: data },
+          message:"Deleted successfully"
+        });
+    } catch (error) {
+      console.log('error', error);
+      reply
+        .status(HttpStatus.BAD_REQUEST)
+        .header('Content_Type', 'application/json')
+        .send({
+          status: 'error',
+          response: { message: error },
+        });
+    }
+  }
 
   @ApiOperation({ summary: 'Find Member' })
   @Get('/find')

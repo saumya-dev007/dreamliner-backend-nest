@@ -65,4 +65,14 @@ export class TeamManagementService {
       return Promise.reject(error);
     }
   }
+  async deleteMember(_id: string): Promise<any> {
+    try {
+      const member = await this.teamModel.findByIdAndDelete({
+        _id: new mongoose.Types.ObjectId(_id),
+      });
+      return Promise.resolve(member);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }

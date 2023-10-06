@@ -8,5 +8,7 @@ export class Artist{
     gender:string;
     @Prop()
     image:string;
+    @Prop({ default: true })
+  status: Boolean;
 }
 export const ArtistSchema = SchemaFactory.createForClass(Artist);
