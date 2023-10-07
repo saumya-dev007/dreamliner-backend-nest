@@ -98,4 +98,17 @@ export class ProjectManagementService {
     }
   }
   // ======================================= //
+
+
+  //============= Find project =============
+  async findProject(_id: string): Promise<any> {
+    try {
+      const project = await this.projectModel.findOne({
+        _id: new mongoose.Types.ObjectId(_id),
+      });
+      return Promise.resolve(project);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }

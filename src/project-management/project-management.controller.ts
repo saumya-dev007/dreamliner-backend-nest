@@ -50,6 +50,29 @@ export class ProjectManagementController {
     }
   }
 
+  @ApiOperation({summary:'Project Find'})
+    @Get("/find")
+    async findProject(@Query() {_id}:ProjectAddEdit, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
+        try {
+            const data = await this.projectManagementService.findProject(_id);
+            reply.status(HttpStatus.OK)
+            .header('content-type', 'application/json')
+            .send({
+                "status": "success",
+                "response":{"projectData": data}
+            })
+        } catch (error) {
+            console.log('error', error);
+            reply
+            .status(HttpStatus.BAD_REQUEST)
+            .header('Content_Type','application/json')
+            .send({
+                'status':'error',
+                "response":{"message": error}
+            })
+        }
+    };
+
   // ========= Project AddEdit ======== //
   @ApiOperation({ summary: 'project-add-edit' })
   @Post('addedit')

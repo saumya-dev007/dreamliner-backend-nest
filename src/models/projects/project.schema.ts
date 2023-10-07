@@ -35,7 +35,7 @@ export class Project_List {
   release_date: Number;
 
   @Prop({ required: true })
-  actors: Array<String>;
+  actors: Array<Object>;
 
   @Prop({ required: true })
   description: String;
@@ -51,6 +51,12 @@ export class Project_List {
 
   @Prop({ required: true })
   poster_verticle: String;
+
+  @Prop({ required: true })
+  category: String;
+
+  @Prop({ required: true })
+  sub_category: String;
 
   @Prop({ default: true })
   status: Boolean;
