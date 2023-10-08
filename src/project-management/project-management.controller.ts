@@ -261,6 +261,7 @@ export class ProjectManagementController {
           response: response,
         });
     } catch (error) {
+      console.log('error', error)
       reply
         .status(HttpStatus.BAD_REQUEST)
         .header('Content-Type', 'application/json')

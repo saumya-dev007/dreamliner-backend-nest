@@ -152,12 +152,13 @@ export class ProjectManagementService {
   // ======================================== //
 
   //============= Recommend project =============
-  async recommendProject(_id: any): Promise<any> {
+  async recommendProject({query}): Promise<any> {
     try {
+      // console.log('_id', _id) =====>    { query: { _id: '651ef401e19db24aef67c106' } }
       const project = await this.projectModel.aggregate([
         {
           $match: {
-            _id: { $ne: new mongoose.Types.ObjectId(_id) },
+            _id: { $ne: new mongoose.Types.ObjectId(query._id) },
           },
         },
       ]);
