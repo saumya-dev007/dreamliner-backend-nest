@@ -149,4 +149,21 @@ export class ProjectManagementService {
       return Promise.reject(error);
     }
   }
+  // ======================================== //
+
+  //============= Recommend project =============
+  async recommendProject(_id: any): Promise<any> {
+    try {
+      const project = await this.projectModel.aggregate([
+        {
+          $match: {
+            _id: { $ne: new mongoose.Types.ObjectId(_id) },
+          },
+        },
+      ]);
+      return Promise.resolve(project);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }

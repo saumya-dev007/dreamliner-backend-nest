@@ -13,6 +13,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { async } from 'rxjs';
 import { HelloBody } from 'src/entities/hello-body.entity';
 import { ProjectAddEdit } from 'src/entities/project-addedit.entity';
+import { ProjectRecommend } from 'src/entities/project-recommend.entity';
 import { ProjectSignleFetch } from 'src/entities/project-single-fetch.entity';
 import { ProjectStatusChnage } from 'src/entities/project-status-chnage.entity';
 import { ProjectManagementService } from './project-management.service';
@@ -46,33 +47,38 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
-                "response":{"message": error}
+          response: { message: error },
         });
     }
   }
 
-  @ApiOperation({summary:'Project Find'})
-    @Get("/find")
-    async findProject(@Query() {_id}:ProjectAddEdit, @Req() request:FastifyRequest, @Res() reply:FastifyReply){
-        try {
-            const data = await this.projectManagementService.findProject(_id);
-            reply.status(HttpStatus.OK)
-            .header('content-type', 'application/json')
-            .send({
-                "status": "success",
-                "response":{"projectData": data}
-            })
-        } catch (error) {
-            console.log('error', error);
-            reply
-            .status(HttpStatus.BAD_REQUEST)
-            .header('Content_Type','application/json')
-            .send({
-                'status':'error',
-                "response":{"message": error}
-            })
-        }
-    };
+  @ApiOperation({ summary: 'Project Find' })
+  @Get('/find')
+  async findProject(
+    @Query() { _id }: ProjectAddEdit,
+    @Req() request: FastifyRequest,
+    @Res() reply: FastifyReply,
+  ) {
+    try {
+      const data = await this.projectManagementService.findProject(_id);
+      reply
+        .status(HttpStatus.OK)
+        .header('content-type', 'application/json')
+        .send({
+          status: 'success',
+          response: { projectData: data },
+        });
+    } catch (error) {
+      console.log('error', error);
+      reply
+        .status(HttpStatus.BAD_REQUEST)
+        .header('Content_Type', 'application/json')
+        .send({
+          status: 'error',
+          response: { message: error },
+        });
+    }
+  }
 
   // ========= Project AddEdit ======== //
   @ApiOperation({ summary: 'project-add-edit' })
@@ -102,7 +108,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
-                "response":{"message": error}
+          response: { message: error },
         });
     }
   }
@@ -131,7 +137,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
-                "response":{"message": error}
+          response: { message: error },
         });
     }
   }
@@ -156,7 +162,7 @@ export class ProjectManagementController {
         .send({
           status: 'success',
           response: response,
-          message:"Staus Updated Successfully"
+          message: 'Staus Updated Successfully',
         });
     } catch (error) {
       reply
@@ -164,7 +170,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
-                "response":{"message": error}
+          response: { message: error },
         });
     }
   }
@@ -197,7 +203,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
-                "response":{"message": error}
+          response: { message: error },
         });
     }
   }
@@ -228,7 +234,39 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
-                "response":{"message": error}
+          response: { message: error },
+        });
+    }
+  }
+  // ======================================================= //
+
+  //   ============ Project Listing Count ========= //
+  @ApiOperation({ summary: 'Project-recommend' })
+  @Post('project-recommend')
+  async ProjectRecommend(
+    @Body() query: ProjectRecommend,
+    @Req() request: FastifyRequest,
+    @Res() reply: FastifyReply,
+  ) {
+    try {
+      const response = await this.projectManagementService.recommendProject({
+        query,
+      });
+
+      reply
+        .status(HttpStatus.OK)
+        .header('Content-Type', 'application/json')
+        .send({
+          status: 'success',
+          response: response,
+        });
+    } catch (error) {
+      reply
+        .status(HttpStatus.BAD_REQUEST)
+        .header('Content-Type', 'application/json')
+        .send({
+          status: 'error',
+          response: { message: error },
         });
     }
   }
