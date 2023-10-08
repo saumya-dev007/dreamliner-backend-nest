@@ -5,7 +5,7 @@ import { IProduct } from 'src/models/projects/project.interface';
 
 @Injectable()
 export class ProjectManagementService {
-  constructor(@InjectModel('project') private projectModel: Model<IProduct>) {}
+  constructor(@InjectModel('project_lists') private projectModel: Model<IProduct>) {}
 
   async myFirstService(data: any): Promise<any> {
     try {

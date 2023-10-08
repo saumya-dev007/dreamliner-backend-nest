@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Transform } from 'class-transformer';
 import * as moment from 'moment';
 import { ObjectId } from 'mongoose';
-@Schema({ collection: 'Project_list' })
+@Schema({ collection: 'project_lists' })
 export class Project_List {
   @Transform(({ value }) => value.toString())
   _id: ObjectId;
