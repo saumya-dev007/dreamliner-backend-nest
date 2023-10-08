@@ -7,7 +7,7 @@ import { ProjectManagementService } from './project-management.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'project', schema: Project_list }]),
+    MongooseModule.forFeature([{ name: 'project_lists', schema: Project_list }]),
   ],
   controllers: [ProjectManagementController],
   providers: [ProjectManagementService],
