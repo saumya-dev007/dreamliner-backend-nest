@@ -66,7 +66,7 @@ export class ArtistController {
             .header('content-type', 'application/json')
             .send({
                 "status": "success",
-                "response":{"artistData": data}
+                "response":{"artistData": data, message:"Added Successfully"}
             })
         } catch (error) {
             console.log('error', error);
@@ -137,7 +137,7 @@ export class ArtistController {
             .header('content-type', 'application/json')
             .send({
                 "status": "success",
-                "response":{"artistData": data}
+                "response":{"artistData": data,message:"Updated Successfully"}
             })
         } catch (error) {
             console.log('error', error);

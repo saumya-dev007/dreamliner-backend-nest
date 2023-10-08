@@ -74,7 +74,7 @@ export class TeamManagementController {
         .header('content-type', 'application/json')
         .send({
           status: 'success',
-          response: { teamData: data },
+          response: { teamData: data, message:"Added successfully" },
         });
     } catch (error) {
       console.log('error', error);
@@ -102,7 +102,7 @@ export class TeamManagementController {
         .header('content-type', 'application/json')
         .send({
           status: 'success',
-          response: { teamData: data },
+          response: { teamData: data, message:"Updated successfully" },
         });
     } catch (error) {
       console.log('error', error);
@@ -129,8 +129,8 @@ export class TeamManagementController {
         .header('content-type', 'application/json')
         .send({
           status: 'success',
-          response: { teamData: data },
-          message:"Deleted successfully"
+          response: { teamData: data, message:"Deleted successfully" },
+          
         });
     } catch (error) {
       console.log('error', error);
