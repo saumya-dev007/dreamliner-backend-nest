@@ -21,7 +21,7 @@ provider:
     DEV_MONGO_DB_NAME: dreamliner
     PROD_DB_CONNECTION_STRING: mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/
     PROD_MONGO_DB_NAME: dreamliner_prod
-    CLOUDFRONT_URL_DEV: https://dluh9degdjgwv.cloudfront.net/
+    CLOUDFRONT_URL_DEV: https://dhoot28u2g2p5.cloudfront.net/
     CLOUDFRONT_URL_PROD: https://d8yc5z39mpthv.cloudfront.net/api
 
 functions:
