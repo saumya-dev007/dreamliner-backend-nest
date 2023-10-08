@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
-@Schema({collection:'atrist_lists'})
+@Schema({collection:'artist_lists'})
 export class Artist{
     @Prop({required:true})
     name:string;

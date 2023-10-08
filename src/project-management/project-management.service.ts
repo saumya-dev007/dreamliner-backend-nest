@@ -99,14 +99,52 @@ export class ProjectManagementService {
   }
   // ======================================= //
 
-
   //============= Find project =============
   async findProject(_id: string): Promise<any> {
     try {
-      const project = await this.projectModel.findOne({
-        _id: new mongoose.Types.ObjectId(_id),
-      });
-      return Promise.resolve(project);
+      const project = await this.projectModel.aggregate([
+        {
+          $match: {
+            _id: new mongoose.Types.ObjectId(_id),
+          },
+        },
+        {
+          $addFields: {
+            artist_oids: {
+              $map: {
+                input: '$actors',
+                in: {
+                  $toObjectId: '$$this._id',
+                },
+              },
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: 'artist_lists',
+            let: {
+              ids: '$artist_oids',
+            },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $in: ['$_id', '$$ids'],
+                  },
+                },
+              },
+            ],
+            as: 'artist_data',
+          },
+        },
+        {
+          $project: {
+            artist_oids: 0,
+          },
+        },
+      ]);
+      return Promise.resolve(project[0]);
     } catch (error) {
       return Promise.reject(error);
     }
