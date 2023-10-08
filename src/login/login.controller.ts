@@ -21,7 +21,7 @@ export class LoginController {
             .header('content-type', 'application/json')
             .send({
                 'status': 'success',
-                'response': {'userData':response}
+                'response': {'userData':response, message:"Login Successfully"}
             })
         } catch (error) {
             console.log('error', error)

@@ -46,6 +46,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
+                "response":{"message": error}
         });
     }
   }
@@ -101,6 +102,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
+                "response":{"message": error}
         });
     }
   }
@@ -129,6 +131,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
+                "response":{"message": error}
         });
     }
   }
@@ -161,6 +164,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
+                "response":{"message": error}
         });
     }
   }
@@ -193,6 +197,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
+                "response":{"message": error}
         });
     }
   }
@@ -223,6 +228,7 @@ export class ProjectManagementController {
         .header('Content-Type', 'application/json')
         .send({
           status: 'error',
+                "response":{"message": error}
         });
     }
   }
