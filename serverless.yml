@@ -22,7 +22,7 @@ provider:
     PROD_DB_CONNECTION_STRING: mongodb+srv://dreamlinerentertainmentweb:TrhiAY3z0mkMlmaR@cluster0.ygqqpq9.mongodb.net/
     PROD_MONGO_DB_NAME: dreamliner_prod
     CLOUDFRONT_URL_DEV: https://dhoot28u2g2p5.cloudfront.net/
-    CLOUDFRONT_URL_PROD: https://d8yc5z39mpthv.cloudfront.net/api
+    CLOUDFRONT_URL_PROD: https://d3fw1eme14loma.cloudfront.net/api
 
 functions:
   main:
@@ -31,11 +31,9 @@ functions:
       - http:
           method: ANY
           path: /
-          cors: true
       - http:
           method: ANY
           path: '{proxy+}'
-          cors: true
 
 plugins:
   - serverless-offline
