@@ -25,7 +25,7 @@ export interface IProduct extends Document {
 
   readonly category: String;
 
-  readonly sub_category: String;
+  readonly sub_category: Array<String>;
 
   readonly description: String;
 

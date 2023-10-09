@@ -27,12 +27,12 @@ export class ProjectManagementService {
           { _id: new mongoose.Types.ObjectId(data._id) },
           data,
         );
-        return Promise.resolve(updateResponse);
+        return Promise.resolve({updateResponse:updateResponse,message:"Updated Successfully"});
       } else {
         console.log('project Add hit=====>>');
 
         let response: any = await this.projectModel.create(data);
-        return Promise.resolve(response);
+        return Promise.resolve({response:response,message:"Added Successfully"});
       }
     } catch (error) {
       return Promise.reject(error);

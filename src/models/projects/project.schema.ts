@@ -56,7 +56,7 @@ export class Project_List {
   category: String;
 
   @Prop({ required: true })
-  sub_category: String;
+  sub_category: Array<String>;
 
   @Prop({ default: true })
   status: Boolean;
