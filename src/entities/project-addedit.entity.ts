@@ -26,14 +26,14 @@ export class ProjectAddEdit {
   @ApiProperty({
     example: 'test',
     description: 'First Body parameter',
-    required: true,
+    // required: true,
   })
   hoichoi_link: String;
 
   @ApiProperty({
     example: 'test',
     description: 'First Body parameter',
-    required: true,
+    // required: true,
   })
   zee5_link: String;
 
