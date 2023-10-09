@@ -82,7 +82,7 @@ export class ProjectAddEdit {
   @ApiProperty({
     example: 'test',
     description: 'First Body parameter',
-    required: true,
+    // required: true,
   })
   description: String;
 

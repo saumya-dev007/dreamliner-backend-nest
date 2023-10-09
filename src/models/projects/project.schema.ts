@@ -37,7 +37,7 @@ export class Project_List {
   @Prop({ required: true })
   actors: Array<Object>;
 
-  @Prop({ required: true })
+  @Prop()
   description: String;
 
   @Prop({ required: true })
