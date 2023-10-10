@@ -41,14 +41,14 @@ export class ProjectManagementService {
   // ================================= //
 
   // =========== Project Status Change ======== //
-  async projectStatusChange(data: any): Promise<any> {
+  async projectStatusChange({project_id, ...data}): Promise<any> {
     try {
       //   console.log('Project Status Chnaged', data.project_id);
-      if (data.project_id !== undefined && data.project_id !== null) {
+      if (project_id !== undefined && project_id !== null) {
         let updateStatusResponse: any =
           await this.projectModel.findByIdAndUpdate(
-            { _id: new mongoose.Types.ObjectId(data.project_id) },
-            { status: data.status },
+            { _id: new mongoose.Types.ObjectId(project_id) },
+            { $set:{...data} },
           );
         return Promise.resolve(updateStatusResponse);
       } else {

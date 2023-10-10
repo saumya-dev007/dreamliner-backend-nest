@@ -60,6 +60,10 @@ export class Project_List {
 
   @Prop({ default: true })
   status: Boolean;
+
+
+  @Prop({ default: false })
+  featured: Boolean;
 }
 
 export const Project_list = SchemaFactory.createForClass(Project_List);

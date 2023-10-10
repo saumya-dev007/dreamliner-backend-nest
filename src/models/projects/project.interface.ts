@@ -37,5 +37,7 @@ export interface IProduct extends Document {
 
   readonly poster_verticle: String;
 
-  readonly status: String;
+  readonly status: Boolean;
+
+  readonly featured: Boolean;
 }

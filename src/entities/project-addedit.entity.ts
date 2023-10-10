@@ -117,7 +117,14 @@ export class ProjectAddEdit {
   @ApiProperty({
     example: true,
     description: '',
-    required: true,
+    // required: true,
   })
   status: Boolean;
+
+  @ApiProperty({
+    example: true,
+    description: '',
+    // required: true,
+  })
+  featured: Boolean;
 }

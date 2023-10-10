@@ -8,6 +8,12 @@ export class ProjectStatusChnage {
   })
   project_id: String;
 
-  @ApiProperty({ example: true, description: 'Body parameter', required: true })
+  @ApiProperty({ example: true, description: 'Body parameter' })
   status: Boolean;
+
+  @ApiProperty({
+    example: true,
+    description: ''
+  })
+  featured: Boolean;
 }

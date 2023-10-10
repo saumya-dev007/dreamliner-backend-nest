@@ -162,7 +162,7 @@ export class ProjectManagementController {
         .send({
           status: 'success',
           response: response,
-          message: 'Staus Updated Successfully',
+          message: query.featured ? 'Set as Featured Project' : (query.status !== undefined ? 'Staus Updated Successfully' : 'Removed from Featured Project'),
         });
     } catch (error) {
       reply
