@@ -121,6 +121,14 @@ export class ProjectManagementService {
           },
         },
         {
+    $addFields:
+      {
+        artist_oids: {
+          $ifNull: ["$artist_oids", []],
+        },
+      },
+  },
+        {
           $lookup: {
             from: 'artist_lists',
             let: {
